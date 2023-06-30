@@ -9,8 +9,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<BrowserHistoryStreamingService>();
-
+builder.Services.AddSingleton<BrowserHistoryStreamBuilderService>();
 var app = builder.Build();
+
+var applicationLifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+var streamBuilderService = app.Services.GetRequiredService<BrowserHistoryStreamBuilderService>();
+applicationLifetime.ApplicationStopping.Register((object? toDispose) => (toDispose as BrowserHistoryStreamBuilderService).Dispose(), streamBuilderService);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -18,8 +22,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

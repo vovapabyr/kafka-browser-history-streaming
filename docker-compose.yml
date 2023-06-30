@@ -90,6 +90,8 @@ services:
     build:
       context: .
       dockerfile: src/BrowserHistoryStreaming.Streaming/Dockerfile
+    ports:
+      - 5070:5070
     depends_on:
       init-kafka: 
         condition: service_completed_successfully

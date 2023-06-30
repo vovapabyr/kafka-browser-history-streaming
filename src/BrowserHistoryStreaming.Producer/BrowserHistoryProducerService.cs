@@ -56,8 +56,7 @@ public class BrowserHistoryProducerService : BackgroundService
                 {
                     var item = csv.GetRecord<CsvBrowserHistoryItem>();
                     _logger.LogDebug($"New history item: '{ item.Id }', '{ item.Date }', '{ item.Time }', '{ item.Title }', '{ item.Url }'.");
-                    _kafkaProducer.Produce(_topic, new Message<string, BrowserHistoryItem> { Key = item.GetHostFromUrl().ToLower(), Value = new BrowserHistoryItem() { Title = item.Title, Url = item.Url } });   
-                    await Task.Delay(100);                     
+                    _kafkaProducer.Produce(_topic, new Message<string, BrowserHistoryItem> { Key = item.GetHostFromUrl().ToLower(), Value = new BrowserHistoryItem() { Title = item.Title, Url = item.Url } });                   
                 }
                 catch (Exception ex)
                 {
