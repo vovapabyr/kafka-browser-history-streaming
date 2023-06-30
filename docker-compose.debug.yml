@@ -1,0 +1,16 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  browserhistorystreamingproducer:
+    image: browserhistorystreamingproducer
+    build:
+      context: .
+      dockerfile: src/BrowserHistoryStreaming.Producer/Dockerfile
+    ports:
+      - 5222:5222
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
