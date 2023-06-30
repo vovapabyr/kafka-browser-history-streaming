@@ -84,3 +84,12 @@ services:
     depends_on:
       init-kafka: 
         condition: service_completed_successfully
+
+  browserhistorystreaming:
+    image: browserhistorystreaming
+    build:
+      context: .
+      dockerfile: src/BrowserHistoryStreaming.Streaming/Dockerfile
+    depends_on:
+      init-kafka: 
+        condition: service_completed_successfully

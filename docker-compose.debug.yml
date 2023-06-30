@@ -14,3 +14,15 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+
+  browserhistorystreamingstreaming:
+    image: browserhistorystreamingstreaming
+    build:
+      context: .
+      dockerfile: src/BrowserHistoryStreaming.Streaming/Dockerfile
+    ports:
+      - 5070:5070
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
