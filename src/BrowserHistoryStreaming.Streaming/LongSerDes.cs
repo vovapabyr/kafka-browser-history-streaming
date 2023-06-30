@@ -15,14 +15,14 @@ public class LongSerDes : AbstractSerDes<long>
     public override byte[] Serialize(long data, SerializationContext context)
     {
         return (byte[]) (Array)new sbyte[] {
-            (sbyte) (data >>> 56),
-            (sbyte) (data >>> 48),
-            (sbyte) (data >>> 40),
-            (sbyte) (data >>> 32),
-            (sbyte) (data >>> 24),
-            (sbyte) (data >>> 16),
-            (sbyte) (data >>> 8),
-            unchecked((sbyte)data)
+            unchecked((sbyte) (data >>> 56)),
+            unchecked((sbyte) (data >>> 48)),
+            unchecked((sbyte) (data >>> 40)),
+            unchecked((sbyte) (data >>> 32)),
+            unchecked((sbyte) (data >>> 24)),
+            unchecked((sbyte) (data >>> 16)),
+            unchecked((sbyte) (data >>> 8)),
+            unchecked((sbyte) data)
         };
     }
 }
