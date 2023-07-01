@@ -16,7 +16,7 @@ public class BrowserHistoryController : ControllerBase
     }
 
     [HttpGet("topVisited")]
-    public IActionResult GetTopVisistedDomains(int count)
+    public IActionResult GetTopVisistedDomains(int count = 5)
     {
         return Ok(_streamBuilderService.Stream.Store(StoreQueryParameters.FromNameAndType("domain-counts", QueryableStoreTypes.KeyValueStore<string, long>())).All().OrderByDescending((p) => p.Value).Take(count));
     }

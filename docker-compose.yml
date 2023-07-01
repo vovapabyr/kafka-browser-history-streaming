@@ -1,7 +1,7 @@
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
 
 version: '3.4'
-name: "kafka-iot-streaming"
+name: "kafka-history-streaming"
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
@@ -91,7 +91,7 @@ services:
       context: .
       dockerfile: src/BrowserHistoryStreaming.Streaming/Dockerfile
     ports:
-      - 5070:5070
+      - "5070"
     depends_on:
       init-kafka: 
         condition: service_completed_successfully
