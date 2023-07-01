@@ -19,6 +19,8 @@ Before running the project you need to bind mount the directory with the browser
         condition: service_completed_successfully
 ```
 After that go to the root of the project and run ```docker compose up``` command.
+
+**Note,** the custom [long serializer](https://github.com/vovapabyr/kafka-browser-history-streaming/blob/main/src/BrowserHistoryStreaming.Streaming/LongSerDes.cs) was created for stream processing, just because [Streamiz version](https://github.com/LGouellec/kafka-streams-dotnet/blob/develop/core/SerDes/Int64SerDes.cs) is not compatible with the [org.apache.kafka.common.serialization.LongDeserializer](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/serialization/LongSerializer.java#L32) which kafka console consumer uses.
 ## Results
 After the dataset is fully processed navigate to the ```/browserHistory/topVisited?count=5``` URL of the streaming application to see the top 5 (change count to see more) visited domains:
 ![history_top_5](https://github.com/vovapabyr/kafka-browser-history-streaming/assets/25819135/78eceaf2-9c66-41d3-941b-5ca056ad7655)
